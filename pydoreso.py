@@ -21,10 +21,6 @@ Typical usage:
     d = doreso.song_identify_file('./test.mp3')
     print json.dumps(d, indent=4)
 
-In addition to standard getters and setters, we provide a few convenience
-methods for document editing. For example, you can use `add_to_first_list`
-to append items (in Markdown) to the first bulleted or checklist in a
-given document, which is useful for automating a task list.
 """
 
 import requests
@@ -34,11 +30,11 @@ import json
 class Doreso(object):
     def __init__(self, api_key, base_url=None, ffmpeg_path=None):
         self.api_key = api_key
-        self.base_url = base_url or 'http://developer.doreso.com/api/v1/'
+        self.base_url = base_url or 'http://developer.doreso.com/api/v1'
         self.ffmpeg = ffmpeg_path or 'ffmpeg'
 
     def song_identify_file(self, filepath, start=0, duration=10):
-        """Identify a audio file.
+        """Identify an audio file.
 
         This method will post 10 seconds wav buffer for recognition by default.
         Your can change start point or duration for practical use.
