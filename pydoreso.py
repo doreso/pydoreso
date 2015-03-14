@@ -44,7 +44,7 @@ class Doreso(object):
         return r.json()
         
     def gen_wavbuffer_from_filebuffer(self, file_buffer, start=0, duration=10):
-        proc = subprocess.Popen([self.ffmpeg, '-i', '-', '-ac', '1', '-ar', '8000', '-f', 'wav', '-'], stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=open('/dev/null'))
+        proc = subprocess.Popen([self.ffmpeg, '-i', '-', '-ac', '1', '-ar', '8000', '-f', 'wav', '-'], stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
         wav_buffer = proc.communicate(input=file_buffer)[0]
         if len(wav_buffer) < (start*128*1024)/8:
             return wav_buffer
